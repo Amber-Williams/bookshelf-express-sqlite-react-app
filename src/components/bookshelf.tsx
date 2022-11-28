@@ -90,26 +90,6 @@ export const Bookshelf = () => {
     }
   };
 
-  const update = async (id: number) => {
-    await axios
-      .post(`http://localhost:4001/books/update/${id}`, {
-        author: author + "update",
-        title: title + "update",
-        pubDate: pubDate + "update",
-        rating: rating + "update",
-      })
-      .then((res) => {
-        console.log(res.data);
-
-        // Fetch all books to refresh
-        // the books on the bookshelf list
-        fetchBooks();
-      })
-      .catch((error) =>
-        console.error(`There was an error creating the ${title} book: ${error}`)
-      );
-  };
-
   // Remove book
   const handleBookRemove = (id: number, title: string) => {
     // Send PUT request to 'books/delete' endpoint
@@ -207,7 +187,6 @@ export const Bookshelf = () => {
             </fieldset>
           </div>
         </div>
-        <div onClick={() => update(3)}>update</div>
         <button onClick={handleBookSubmit} className="btn btn-add">
           Add the book
         </button>
